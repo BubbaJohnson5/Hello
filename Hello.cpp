@@ -9,7 +9,9 @@ int main()
 
 	printf( "More printf's\n" );
 
-	printf( "and yet again, More printf's\n" );
+	printf("and yet again, More printf's\n");
+
+	printf("Test for Tony\n");
 
 	return( 0 );
 }
