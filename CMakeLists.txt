@@ -12,11 +12,22 @@ endif()
 project ("Hello")
 
 # Add source to this project's executable.
-add_executable (Hello "Hello.cpp" )
+add_executable( Hello Hello.cpp )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Hello PROPERTY CXX_STANDARD 20)
 endif()
 
-# TODO: Add tests and install targets if needed.
-install( TARGETS Hello CONFIGURATIONS Debug RUNTIME DESTINATION debug/bin )
+# Install command
+install( TARGETS Hello CONFIGURATIONS Debug RUNTIME DESTINATION debug )
+install( CODE "MESSAGE( \"Installed to 'Debug' Configuration location\" )" )
+
+install( TARGETS Hello CONFIGURATIONS Release RUNTIME DESTINATION release )
+install( TARGETS Hello CONFIGURATIONS RelWithDebInfo RUNTIME DESTINATION relwdebug )
+install( TARGETS Hello CONFIGURATIONS MinSizeRel RUNTIME DESTINATION minsizerel )
+
+# enable testing functionality
+enable_testing()
+
+# Test command
+add_test( NAME Hello_Test COMMAND Hello )
